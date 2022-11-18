@@ -1,8 +1,16 @@
 import { Module } from '@nestjs/common';
-import { TelephoneModule } from './telephone/telephone.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { dbConfig } from 'configs/db.config';
 
 @Module({
-  imports: [TelephoneModule],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: dbConfig,
+    }),
+  ],
   controllers: [],
   providers: [],
 })
