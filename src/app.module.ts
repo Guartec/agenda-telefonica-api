@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dbConfig } from 'configs/db.config';
+import { TelephoneModule } from './telephone/telephone.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { dbConfig } from 'configs/db.config';
       inject: [ConfigService],
       useFactory: dbConfig,
     }),
+    TelephoneModule,
   ],
   controllers: [],
   providers: [],
