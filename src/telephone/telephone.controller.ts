@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TelephoneService } from './telephone.service';
 import { CreateTelephoneDto } from './dto/create-telephone.dto';
 import { UpdateTelephoneDto } from './dto/update-telephone.dto';
@@ -19,12 +27,15 @@ export class TelephoneController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.telephoneService.findOne(+id);
+    return this.telephoneService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTelephoneDto: UpdateTelephoneDto) {
-    return this.telephoneService.update(+id, updateTelephoneDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateTelephoneDto: UpdateTelephoneDto,
+  ) {
+    return this.telephoneService.update(id, updateTelephoneDto);
   }
 
   @Delete(':id')

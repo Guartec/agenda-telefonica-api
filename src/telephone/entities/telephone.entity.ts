@@ -1,16 +1,23 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+} from 'typeorm';
 
 @Entity()
+@Unique(['telephoneNumber'])
 export class Telephone extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: false, type: 'text' })
   name: string;
 
-  @Column()
+  @Column({ nullable: false, type: 'text' })
   telephoneNumber: string;
 
-  @Column()
+  @Column({ array: true, type: 'text' })
   branch: string[];
 }
